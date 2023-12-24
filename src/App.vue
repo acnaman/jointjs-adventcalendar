@@ -5,7 +5,7 @@
 
 <script>
 import { dia, shapes, g } from 'jointjs';
-import { Accepting } from './calendar-parts';
+import { ReservedDay } from './calendar-parts';
 
 const namespace = shapes;
 
@@ -20,7 +20,7 @@ export default {
 
   methods: {
     addRect() {
-      const rect = Accepting.create('hoge', new g.Point(40, this.startPos))
+      const rect = ReservedDay.create('2', new g.Point(40, this.startPos), "JointJSの使い方");
       this.graph.addCell(rect);
 
       this.startPos += 50;
@@ -50,4 +50,8 @@ export default {
 </script>
 
 <style scoped>
+.namespace {
+  width: 100%;
+  height: 100%;
+}
 </style>
