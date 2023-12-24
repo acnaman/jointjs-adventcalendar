@@ -5,7 +5,7 @@
 
 <script>
 import { dia, shapes, g } from 'jointjs';
-import { ReservedDay } from './calendar-parts';
+import { PostedDay } from './calendar-parts';
 
 const namespace = shapes;
 
@@ -20,7 +20,7 @@ export default {
 
   methods: {
     addRect() {
-      const rect = ReservedDay.create('2', new g.Point(40, this.startPos), "JointJSの使い方");
+      const rect = PostedDay.create('2', new g.Point(40, this.startPos), "JointJSの使い方", "https://google.com");
       this.graph.addCell(rect);
 
       this.startPos += 50;

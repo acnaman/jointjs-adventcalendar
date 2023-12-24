@@ -118,3 +118,79 @@ export const ReservedDay = dia.Element.define(
   }
 );
 
+/**
+ * 投稿済の日
+ */
+export const PostedDay = dia.Element.define(
+  'calendar.PostedDay',
+  {
+    size: { width: 150, height: 170 },
+    attrs: {
+      body: {
+        width: 'calc(w)',
+        height: 'calc(h)',
+        stroke: '#aaa',
+        strokeWidth: 1,
+        fill: '#ffe',
+        event: 'editCalendar',
+      },
+      date: {
+        x: 'calc(x+10)',
+        y: 'calc(y+20)',
+        fontSize: '12',
+        fontWeight: 'bold'
+      },
+      link: {
+        fontWeight: 'bold',
+        fill: 'blue',
+        target: '_blank',
+        style: 'cursor: pointer',
+      },
+      title: {
+        x: 'calc(x+10)',
+        y: 'calc(y + calc(h/3))',
+        width: 'calc(w-20) ',
+        height: 'calc(h/3)',
+        fontSize: '12',
+      },
+      'edit-button': {
+        width: 'calc(w-20)',
+        height: '40',
+        x: 'calc(x+10)',
+        y: 'calc(y + calc(h-60))',
+        fill: "#eee",
+        rx: "5",
+        ry: "5",
+        class: "calendar-button",
+      },
+      'edit-button-text': {
+        x: 'calc(x + calc(w/2 - 15))',
+        y: 'calc(y + calc(h-35))',
+      }
+    }
+  },
+  {
+    markup: util.svg`
+      <rect @selector="body" />
+      <text @selector="date" />
+      <a @selector="link">
+        <text @selector="title" />
+      </a>
+      <g @selector="edit-button-wrapper">
+        <rect @selector="edit-button" />
+        <text @selector="edit-button-text">編集</text>
+      </g>
+    `
+  },
+  {
+    create(date, point, title, url) {
+      const postedDay = new PostedDay();
+      postedDay.attr('date/text', date);
+      postedDay.position(point.x, point.y);
+      postedDay.attr('title/text', title);
+      postedDay.attr('link/xlink:href', url);
+
+      return postedDay;
+    }
+  }
+);
