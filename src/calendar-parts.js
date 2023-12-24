@@ -3,8 +3,8 @@ import { dia, util } from 'jointjs';
 /**
  * 参加受付中の日
  */
-export const Accepting = dia.Element.define(
-  'calendar.Accepting',
+export const AcceptingDay = dia.Element.define(
+  'calendar.AcceptingDay',
   {
     size: { width: 150, height: 170 },
     attrs: {
@@ -37,16 +37,15 @@ export const Accepting = dia.Element.define(
       <rect @selector="body" />
       <image @selector="add-icon" />
       <text @selector="date" />
-      <rect @selector="edit-button" />
     `
   },
   {
     create(date, point) {
-      const accepting = new Accepting();
-      accepting.attr('date/text', date);
-      accepting.position(point.x, point.y);
+      const acceptingDay = new AcceptingDay();
+      acceptingDay.attr('date/text', date);
+      acceptingDay.position(point.x, point.y);
 
-      return accepting;
+      return acceptingDay;
     }
   }
 );
