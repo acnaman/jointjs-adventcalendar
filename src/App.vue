@@ -4,7 +4,8 @@
 </template>
 
 <script>
-import { dia, shapes } from 'jointjs';
+import { dia, shapes, g } from 'jointjs';
+import { Accepting } from './calendar-parts';
 
 const namespace = shapes;
 
@@ -19,16 +20,7 @@ export default {
 
   methods: {
     addRect() {
-      const rect = new shapes.standard.Rectangle({
-        size: { width: 150, height: 40 },
-        position: { x: 10, y: this.startPos },
-        attrs: {
-          body: {
-            event: 'rect2.click'
-          }
-        }
-      });
-      rect.attr('body/fill', 'lightblue');
+      const rect = Accepting.create('hoge', new g.Point(40, this.startPos))
       this.graph.addCell(rect);
 
       this.startPos += 50;
@@ -46,6 +38,7 @@ export default {
       gridSize: 10,
       cellViewNamespace: namespace,
       defaultLink: () => new shapes.standard.Link(),
+      preventContextMenu: false,
       linkPinning: false,
       defaultAnchor: {
         name: 'bottomLeft',
