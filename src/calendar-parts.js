@@ -30,9 +30,9 @@ export const AcceptingDay = dia.Element.define(
       },
       'add-icon': {
         href: '134224_add_plus_new_icon.svg',
-        width: 'calc(w/3)',
-        height: 'calc(w/3)',
-        x: 'calc(x)' + 'calc(w/3)',
+        width: 'calc(w/4)',
+        height: 'calc(w/4)',
+        x: 'calc(x)' + 'calc(0.375 * w)',
         y: 'calc(y)' + 'calc(h/2)',
         event: 'editCalendar',
       },
@@ -40,7 +40,7 @@ export const AcceptingDay = dia.Element.define(
         x: 'calc(x+10)',
         y: 'calc(y+20)',
         fontSize: '12',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
       },
     }
   },
@@ -54,7 +54,7 @@ export const AcceptingDay = dia.Element.define(
   {
     create(date, point) {
       const acceptingDay = new AcceptingDay();
-      acceptingDay.attr('date', date);
+      acceptingDay.prop('date', date);
       acceptingDay.attr('date/text', date);
       acceptingDay.position(point.x, point.y);
 
@@ -123,7 +123,7 @@ export const ReservedDay = dia.Element.define(
   {
     create(date, point, title) {
       const reservedDay = new ReservedDay();
-      reservedDay.attr('date', date);
+      reservedDay.prop('date', date);
       reservedDay.attr('date/text', date);
       reservedDay.position(point.x, point.y);
       reservedDay.attr('title/text', title);
@@ -201,7 +201,7 @@ export const PostedDay = dia.Element.define(
   {
     create(date, point, title, url) {
       const postedDay = new PostedDay();
-      postedDay.attr('date', date);
+      postedDay.prop('date', date);
       postedDay.attr('date/text', date);
       postedDay.position(point.x, point.y);
       postedDay.attr('title/text', title);
