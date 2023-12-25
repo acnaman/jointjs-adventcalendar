@@ -32,8 +32,8 @@ export const AcceptingDay = dia.Element.define(
         href: '134224_add_plus_new_icon.svg',
         width: 'calc(w/4)',
         height: 'calc(w/4)',
-        x: 'calc(x)' + 'calc(0.375 * w)',
-        y: 'calc(y)' + 'calc(h/2)',
+        x: 'calc(x + calc(0.375 * w))',
+        y: 'calc(y + calc(h/2))',
         event: 'editCalendar',
       },
       date: {
