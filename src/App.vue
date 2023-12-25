@@ -57,12 +57,6 @@ export default {
   },
 
   methods: {
-    addRect() {
-      const rect = PostedDay.create('2', new g.Point(40, this.startPos), "JointJSの使い方", "https://google.com");
-      this.graph.addCell(rect);
-
-      this.startPos += 50;
-    },
     showEditModal() {
       this.isShownEditModal = true;
     }
