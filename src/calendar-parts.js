@@ -1,5 +1,17 @@
 import { dia, util } from 'jointjs';
 
+export const createCalendarDay = function (date, point, title, url) {
+  if (!!title && !!url) {
+    return PostedDay.create(date, point, title, url);
+  }
+
+  if (!!title) {    
+    return ReservedDay.create(date, point, title);
+  }
+
+  return AcceptingDay.create(date, point);
+}
+
 /**
  * 参加受付中の日
  */
@@ -42,6 +54,7 @@ export const AcceptingDay = dia.Element.define(
   {
     create(date, point) {
       const acceptingDay = new AcceptingDay();
+      acceptingDay.attr('date', date);
       acceptingDay.attr('date/text', date);
       acceptingDay.position(point.x, point.y);
 
@@ -90,8 +103,9 @@ export const ReservedDay = dia.Element.define(
         class: "calendar-button",
       },
       'edit-button-text': {
-        x: 'calc(x + calc(w/2 - 15))',
+        x: 'calc(x + calc(w/2 - 12))',
         y: 'calc(y + calc(h-35))',
+        fontSize: '12',
       }
     }
   },
@@ -109,6 +123,7 @@ export const ReservedDay = dia.Element.define(
   {
     create(date, point, title) {
       const reservedDay = new ReservedDay();
+      reservedDay.attr('date', date);
       reservedDay.attr('date/text', date);
       reservedDay.position(point.x, point.y);
       reservedDay.attr('title/text', title);
@@ -164,8 +179,9 @@ export const PostedDay = dia.Element.define(
         class: "calendar-button",
       },
       'edit-button-text': {
-        x: 'calc(x + calc(w/2 - 15))',
+        x: 'calc(x + calc(w/2 - 12))',
         y: 'calc(y + calc(h-35))',
+        fontSize: '12',
       }
     }
   },
@@ -185,6 +201,7 @@ export const PostedDay = dia.Element.define(
   {
     create(date, point, title, url) {
       const postedDay = new PostedDay();
+      postedDay.attr('date', date);
       postedDay.attr('date/text', date);
       postedDay.position(point.x, point.y);
       postedDay.attr('title/text', title);
